@@ -57,17 +57,17 @@ public class ShoppingCartController {
             Model model, Principal principal
     ) {
         User user = userService.findByUsername(principal.getName());
-        book = bookService.findOne(book.getBook_id());
+        book = bookService.findOne(book.getBookId());
 
         if(Integer.parseInt(qty) > book.getInStockNumber()) {
             model.addAttribute("notEnoughStock", true);
-            return "forward:/bookDetail?id="+book.getBook_id();
+            return "forward:/bookDetail?id="+book.getBookId();
         }
 
         CartItem cartItem = cartItemService.addBookToCartItem(book, user, Integer.parseInt(qty));
         model.addAttribute("addBookSuccess", true);
 
-        return "forward:/bookDetail?id="+book.getBook_id();
+        return "forward:/bookDetail?id="+book.getBookId();
     }
 
     @RequestMapping("/updateCartItem")

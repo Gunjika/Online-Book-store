@@ -1,20 +1,25 @@
 package com.capgemini.oms.entity;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+
 @Entity
 public class BookToCartItem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(insertable = false,updatable = false)
 	private Long id;
 	
-	@ManyToOne()
-	@JoinColumn(name="book_id")
+	@ManyToOne(fetch=FetchType.EAGER,targetEntity = BookToCartItem.class, cascade = CascadeType.ALL)
+	@JoinColumn(name = "id", referencedColumnName = "id")
 	private Book book;
 	
 	

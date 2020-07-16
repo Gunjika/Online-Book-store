@@ -1,5 +1,6 @@
 package com.capgemini.oms.entity;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -15,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Transient;
 
 import org.hibernate.annotations.Fetch;
@@ -33,97 +35,132 @@ public class Book {
 	private List<CartItem> cartItemList;
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(length=10)
-	private int book_id;
-	@Column(length=128)
-	private String title;
-	@Column(length=64)
-	private String author;
-	@Column(length=200)
-	private String description;
-	@Column(length=10)
-	private int ISBN;
-	@Column(length=10)
-	private float price;
-	private Date published_Date;
-	@Lob
-	@Column
-	@Basic(fetch = FetchType.LAZY)
-	private byte[] icon;
-	
-	private int inStockNumber;
-	
-	/*public Category getCategory() {
-		return Category;
-	}
-	public void setCategory(Category category) {
-		Category = category;
-	}*/
-	
-	
-	public List<CartItem> getCartItemList() {
-		return cartItemList;
-	}
-	public void setCartItemList(List<CartItem> cartItemList) {
-		this.cartItemList = cartItemList;
-	}
+    @Column(name="book_id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "book_seq")
+    @SequenceGenerator(sequenceName = "book_sequence", allocationSize = 1, name = "book_seq")
+	 private Integer bookId;
+    
+    @Column(name="title")
+	 private String title;
+    
+    @Column(name="author")
+	 private String author;
+    
+    @Column(name="description")
+	 private String description;
+    
+    
+    @Column(name="isbn")
+	 private Long isbn;
+    
+	 
+    @Column(name="price")
+    private  Float price;
+    
+    @Column(name="publish_date")
+   private LocalDate publishDate;
+    
+    private int inStockNumber;
+
 	public int getInStockNumber() {
 		return inStockNumber;
 	}
+
 	public void setInStockNumber(int inStockNumber) {
 		this.inStockNumber = inStockNumber;
 	}
-	public int getBook_id() {
-		return book_id;
+
+	public Integer getBookId() {
+		return bookId;
 	}
-	public void setBook_id(int book_id) {
-		this.book_id = book_id;
+
+	public void setBookId(Integer bookId) {
+		this.bookId = bookId;
 	}
+
 	public String getTitle() {
 		return title;
 	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
 	public String getAuthor() {
 		return author;
 	}
+
 	public void setAuthor(String author) {
 		this.author = author;
 	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public int getISBN() {
-		return ISBN;
+
+	public Long getIsbn() {
+		return isbn;
 	}
-	public void setISBN(int iSBN) {
-		ISBN = iSBN;
+
+	public void setIsbn(Long isbn) {
+		this.isbn = isbn;
 	}
-	public float getPrice() {
+
+	public Float getPrice() {
 		return price;
 	}
-	public void setPrice(float price) {
+
+	public void setPrice(Float price) {
 		this.price = price;
 	}
-	public Date getPublished_Date() {
-		return published_Date;
+
+	public LocalDate getPublishDate() {
+		return publishDate;
 	}
-	public void setPublished_Date(Date published_Date) {
-		this.published_Date = published_Date;
+
+	public void setPublishDate(LocalDate publishDate) {
+		this.publishDate = publishDate;
 	}
-	public byte[] getIcon() {
-		return icon;
+
+	
+	@Override
+	public String toString() {
+		return "Book [cartItemList=" + cartItemList + ", bookId=" + bookId + ", title=" + title + ", author=" + author
+				+ ", description=" + description + ", isbn=" + isbn + ", price=" + price + ", publishDate="
+				+ publishDate + ", inStockNumber=" + inStockNumber + "]";
 	}
-	public void setIcon(byte[] icon) {
-		this.icon = icon;
+
+	public Book(List<CartItem> cartItemList, Integer bookId, String title, String author, String description, Long isbn,
+			Float price, LocalDate publishDate, int inStockNumber) {
+		super();
+		this.cartItemList = cartItemList;
+		this.bookId = bookId;
+		this.title = title;
+		this.author = author;
+		this.description = description;
+		this.isbn = isbn;
+		this.price = price;
+		this.publishDate = publishDate;
+		this.inStockNumber = inStockNumber;
+	}
+
+	public Book() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public List<CartItem> getCartItemList() {
+		return cartItemList;
+	}
+
+	public void setCartItemList(List<CartItem> cartItemList) {
+		this.cartItemList = cartItemList;
 	}
 	
-
 	
 	
 }

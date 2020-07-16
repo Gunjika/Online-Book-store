@@ -42,7 +42,7 @@ public class CartItemServiceImpl implements CartItemService{
         List<CartItem> cartItemList = findByShoppingCart(user.getShoppingCart());
 
         for(CartItem cartItem : cartItemList) {
-            if(book.getBook_id() == cartItem.getBook().getBook_id()) {
+            if(book.getBookId() == cartItem.getBook().getBookId()) {
                 cartItem.setQty(cartItem.getQty()+qty);
                 cartItem.setSubtotal(new BigDecimal(book.getPrice()).multiply(new BigDecimal(qty)));
                 cartItemRepository.save(cartItem);
