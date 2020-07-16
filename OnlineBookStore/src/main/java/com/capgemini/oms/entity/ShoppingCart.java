@@ -10,10 +10,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class ShoppingCart {
@@ -22,10 +24,12 @@ public class ShoppingCart {
 	private Long id;
 	private BigDecimal GrandTotal;
 	
-//	@OneToMany(cascade = CascadeType.ALL, targetEntity = CartItem.class, fetch = FetchType.EAGER)
-//	@JoinColumn(name = "cart_id", referencedColumnName = "id")
-//	@JsonIgnore
-//	private List<CartItem> cartItemList;
+	
+	@JsonIgnore
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	@OneToMany(targetEntity=CartItem.class,cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+	@JoinColumn(name="cartid",referencedColumnName = "id")
+	private List<CartItem> cartItemList;
 //	
 //	@OneToOne(cascade = CascadeType.ALL)
 //	private User user;
@@ -46,13 +50,13 @@ public class ShoppingCart {
 		GrandTotal = grandTotal;
 	}
 
-//	public List<CartItem> getCartItemList() {
-//		return cartItemList;
-//	}
-//
-//	public void setCartItemList(List<CartItem> cartItemList) {
-//		this.cartItemList = cartItemList;
-//	}
+	public List<CartItem> getCartItemList() {
+		return cartItemList;
+	}
+
+	public void setCartItemList(List<CartItem> cartItemList) {
+		this.cartItemList = cartItemList;
+	}
 //
 //	public User getUser() {
 //		return user;

@@ -9,5 +9,5 @@ import com.capgemini.oms.entity.CartItem;
 
 @Transactional
 public interface BookToCartItemRepository extends CrudRepository<BookToCartItem, Long> {
-//    void deleteByCartItem(CartItem cartItem);
+    void deleteByCartItem(CartItem cartItem);
 }
