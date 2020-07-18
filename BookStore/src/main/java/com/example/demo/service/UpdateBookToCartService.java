@@ -4,7 +4,7 @@ import com.example.demo.entity.ShoppingCart;
 
 public interface UpdateBookToCartService {
 	boolean addBookToCart(ShoppingCart ShoppingCart);
-	boolean updateBookToCart(ShoppingCart ShoppingCart,int id);
+	public ShoppingCart updateCart(ShoppingCart shoppingCart);
 	void deleteAll();
 
 }

@@ -22,13 +22,7 @@ public class UpdateBookImpl implements UpdateBookToCartService{
 		else
 			return false;
 	}
-	
-	@Override
-	public boolean updateBookToCart(ShoppingCart shoppingCart, int id) {
-		// TODO Auto-generated method stub
-		shoppingCart.setBookName(shoppingCart.getBookName());
-		return dao.save(shoppingCart)!=null;
-	}
+
 
 	@Override
 	public void deleteAll() {
@@ -36,5 +30,17 @@ public class UpdateBookImpl implements UpdateBookToCartService{
 		dao.deleteAll();
 		
 	}
+
+
+@Override
+public ShoppingCart updateCart(ShoppingCart shoppingCart) {
+	// TODO Auto-generated method stub
+	ShoppingCart up=dao.getOne(shoppingCart.getBook_Id());
+	if(up!=null) {
+		up.setQuantity(shoppingCart.getQuantity());
+	}
+	return dao.save(up);
+}
+	
 
 }

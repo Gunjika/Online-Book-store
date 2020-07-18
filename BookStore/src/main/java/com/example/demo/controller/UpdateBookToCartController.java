@@ -51,8 +51,33 @@ public class UpdateBookToCartController {
 		service.deleteAll();
 		return "Successfully deleted all enitities";
 	}
-	@PutMapping("/updateCart/{id}")
-	public ResponseEntity<String> updateCart(@Validated @RequestBody ShoppingCart shoppingCart, @PathVariable int id,BindingResult bindingResult)throws CartException
+//	@PutMapping("/updateCart/{id}")
+//	public ResponseEntity<String> updateCart(@Validated @RequestBody ShoppingCart shoppingCart, @PathVariable int id,BindingResult bindingResult)throws CartException
+//	{
+//		String err = "";
+//		if (bindingResult.hasErrors()) {
+//			List<FieldError> errors = bindingResult.getFieldErrors();
+//			for (FieldError error : errors)
+//				err += error.getDefaultMessage() + "<br/>";
+//			throw new CartException(err);
+//		}
+//		try
+//		{
+//			service.updateBookToCart(shoppingCart, id);
+//			return new ResponseEntity<String>("Cart updated successfully", HttpStatus.OK);
+//
+//		}
+//		catch (DataIntegrityViolationException ex) {
+//			throw new CartException("ID doesnot exists");
+//		}
+//	}
+//	@PutMapping("/updateCart")
+//	public ShoppingCart updateC(@RequestBody ShoppingCart shoppingCart) {
+//		return service.updateCart(shoppingCart);		
+//	}
+	
+	@PutMapping("/updateCart")
+	public ResponseEntity<String> updateCart(@Validated @RequestBody ShoppingCart shoppingCart,BindingResult bindingResult)throws CartException
 	{
 		String err = "";
 		if (bindingResult.hasErrors()) {
@@ -63,13 +88,14 @@ public class UpdateBookToCartController {
 		}
 		try
 		{
-			service.updateBookToCart(shoppingCart, id);
-			return new ResponseEntity<String>("Cart updated successfully", HttpStatus.OK);
-
+			service.updateCart(shoppingCart);
+			return new ResponseEntity<String>("Cart updated successfully", HttpStatus.OK); 
+			
 		}
 		catch (DataIntegrityViolationException ex) {
 			throw new CartException("ID doesnot exists");
 		}
 	}
+	
 
 }
