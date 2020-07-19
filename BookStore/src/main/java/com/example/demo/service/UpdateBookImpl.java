@@ -1,10 +1,14 @@
 package com.example.demo.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.UpdateBookToCartDao;
 import com.example.demo.entity.ShoppingCart;
+import com.example.demo.exception.CartException;
 
 @Service
 public class UpdateBookImpl implements UpdateBookToCartService{
@@ -40,6 +44,28 @@ public ShoppingCart updateCart(ShoppingCart shoppingCart) {
 		up.setQuantity(shoppingCart.getQuantity());
 	}
 	return dao.save(up);
+}
+
+
+@Override
+public Optional<ShoppingCart> getBookById(int bookid) {
+	// TODO Auto-generated method stub
+	return dao.findById(bookid);
+}
+
+
+@Override
+public List<ShoppingCart> getAllBook() {
+	// TODO Auto-generated method stub
+	return dao.findAll();
+}
+
+
+@Override
+public String removeBook(Integer bookid) {
+	dao.deleteById(bookid);
+	// TODO Auto-generated method stub
+	return "deleted";
 }
 	
 

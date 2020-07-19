@@ -12,10 +12,10 @@ public class UserServiceImpl implements UserService{
     private UserRepository userRepository;
 
 	@Override
-	public User findByUsername(String username) {
+	public User findByUsername(String name) {
 		// TODO Auto-generated method stub
-		return userRepository.findByUsername(username);
+		return null;
 	}
-	
 
+	
 }
