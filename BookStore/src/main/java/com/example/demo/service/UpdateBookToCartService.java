@@ -7,10 +7,12 @@ import com.example.demo.entity.ShoppingCart;
 
 public interface UpdateBookToCartService {
 	boolean addBookToCart(ShoppingCart ShoppingCart);
-	public ShoppingCart updateCart(ShoppingCart shoppingCart);
+	public ShoppingCart updateCart(ShoppingCart shoppingCart,int book_Id);
 	void deleteAll();
-	Optional<ShoppingCart> getBookById(int bookid);
+	Optional<ShoppingCart> getBookById(int userid);
 	List<ShoppingCart> getAllBook();
 	String removeBook(Integer bookid);
+	
+	
 
 }

@@ -53,7 +53,7 @@ class BookStoreApplicationTests {
 	public void UpdateBookTest() {
 		ShoppingCart c=new ShoppingCart("1011", 2021, 2);
 		c.setQuantity(3);
-		service.updateCart(c);
+		service.updateCart(c, 2021);
 		assertEquals(3,c.getQuantity());
 	}
 

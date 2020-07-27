@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
@@ -36,4 +38,16 @@ public class CartTests {
 //		
 //		ShoppingCart update=dao.findById(cartId);
 //		}
+	@Test
+	@Rollback(false)
+	public void testDeleteBook() {
+		Integer id=1011;
+		boolean p1=dao.findById(id).isPresent();
+		dao.deleteById(id);
+		boolean p2=dao.findById(id).isPresent();
+		
+		assertTrue(p1);
+		assertTrue(p2);
+
+	}
 }
