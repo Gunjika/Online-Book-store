@@ -61,8 +61,8 @@ public class UpdateBookImpl implements UpdateBookToCartService {
 	}
 
 	@Override
-	public String removeBook(Integer bookid) {
-		dao.deleteById(bookid);
+	public String removeBook(int bookId) {
+		dao.deleteById(bookId);
 		// TODO Auto-generated method stub
 		return "deleted";
 	}

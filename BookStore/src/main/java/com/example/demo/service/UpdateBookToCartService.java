@@ -11,7 +11,7 @@ public interface UpdateBookToCartService {
 	void deleteAll();
 	Optional<ShoppingCart> getBookById(int userid);
 	List<ShoppingCart> getAllBook();
-	String removeBook(Integer bookid);
+	String removeBook(int bookId);
 	
 	
 
